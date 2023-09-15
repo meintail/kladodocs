@@ -1,0 +1,55 @@
+
+Обработка ошибок и исключений
+
+
+// Корневая папка
+cd /d D:\DATA\web\docs.test
+
+// Установка Laravel
+composer create-project --prefer-dist laravel/laravel ./
+
+
+// Создание контроллера для админки
+
+php artisan make:controller Admin/MainController
+php artisan migrate:refresh
+
+
+//========== ВСЕ МАРШРУТЫ ==========
+php artisan route:list
+
+
+//========== ЗАВИСИМОСТИ ==========
+
+composer require cviebrock/eloquent-sluggable
+
+
+//========== МОДЕЛИ ==========
+
+php artisan make:model Category -m
+php artisan make:model Doc -m
+php artisan make:model Tag -m
+
+php artisan make:migration create_doc_tag_table --create
+
+php artisan migrate --database=pgsql
+
+
+
+
+
+//========== Ресурсный контроллер для категории ==========
+
+php artisan make:controller Admin\CategoryController --resource
+
+
+
+//============================
+
+
+DB_USERNAME=pet_adm
+DB_CONNECTION=pgsql
+DB_DATABASE=pet
+DB_HOST=192.168.1.37
+DB_PORT=5432
+DB_PASSWORD=admin
